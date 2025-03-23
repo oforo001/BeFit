@@ -11,11 +11,6 @@ namespace BeFit.Models
         [MaxLength(255)]
         public string Name { get; set; } = string.Empty;
 
-        public ICollection<WorkoutInformation> Workouts { get; set;} = new List<WorkoutInformation>();
         public ICollection<TrainingSession> TrainingSessions { get; set; } = new List<TrainingSession>();
-
-
-
-
     }
 }
