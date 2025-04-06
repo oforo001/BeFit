@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\BeFit.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\bezde\\source\\repos\\BeFit\\BeFit\\wwwroot\\Images\\account-bg.jpg",
+      "PackagePath": "staticwebassets\\Images\\account-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\bezde\\source\\repos\\BeFit\\BeFit\\wwwroot\\css\\account.css",
+      "PackagePath": "staticwebassets\\css\\account.css"
+    },
+    {
       "Id": "C:\\Users\\bezde\\source\\repos\\BeFit\\BeFit\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

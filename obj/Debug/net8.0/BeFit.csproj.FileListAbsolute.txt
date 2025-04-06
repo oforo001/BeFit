@@ -130,3 +130,4 @@ C:\Users\bezde\source\repos\BeFit\BeFit\bin\Debug\net8.0\Microsoft.AspNetCore.Di
 C:\Users\bezde\source\repos\BeFit\BeFit\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\bezde\source\repos\BeFit\BeFit\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\bezde\source\repos\BeFit\BeFit\obj\Debug\net8.0\BeFit.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\bezde\source\repos\BeFit\BeFit\bin\Debug\net8.0\wwwroot\Images\account-bg.jpg

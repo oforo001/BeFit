@@ -2,7 +2,7 @@
 
 namespace BeFit.ViewModels
 {
-    public class LoginViewModelcs
+    public class LoginViewModel
     {
         [Required(ErrorMessage = "Email is requred.")]
         [EmailAddress]
