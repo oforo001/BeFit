@@ -8,6 +8,7 @@ namespace BeFit.Data
 {
     public class ApplicationContext : IdentityDbContext<AppUser>
     {
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
            
