@@ -16,6 +16,10 @@ namespace BeFit.Controllers
 
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.Username = User.Identity.Name;
+            }
             return View();
         }
 
