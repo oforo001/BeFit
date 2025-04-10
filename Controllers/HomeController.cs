@@ -1,6 +1,10 @@
 using BeFit.Models;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using BeFit.Data;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 
 namespace BeFit.Controllers
@@ -8,18 +12,41 @@ namespace BeFit.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationContext _applicationDbContext;
+        private readonly UserManager<AppUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        // Inject ApplicationContext and UserManager
+        public HomeController(ILogger<HomeController> logger, ApplicationContext applicationDbContext, UserManager<AppUser> userManager)
         {
             _logger = logger;
+            _applicationDbContext = applicationDbContext;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        // Index Action: Display Training Sessions for logged-in user
+        public async Task<IActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
             {
-                ViewBag.Username = User.Identity.Name;
+                // Get the logged-in user
+                var loggedUser = await _userManager.GetUserAsync(User);
+
+                if (loggedUser != null)
+                {
+                    // Fetch the user's training sessions
+                    var sessions = await _applicationDbContext.TrainingSessions
+                        .Include(trainingSession => trainingSession.Exercise)
+                        .Include(trainingSession => trainingSession.Workouts)
+                        .Where(trainingSession => trainingSession.CreatedById == loggedUser.Id)
+                        .ToListAsync();
+
+                    // Pass the sessions to the view
+                    ViewBag.TrainingSessions = sessions;
+                }
+
+                ViewBag.Username = User.Identity.Name; // Username to be displayed
             }
+
             return View();
         }
 

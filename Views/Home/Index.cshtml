@@ -2,13 +2,60 @@
     ViewData["Title"] = "Home Page";
 }
 
-
-<div class="container">
-    
-
+<div class="container my-5">
     @if (User.Identity.IsAuthenticated)
     {
-        <p>Hello, @ViewBag.Username!</p> 
+        <p class="greeting-text fs-4">Hello, @ViewBag.Username!</p>
+
+        <h3>Your Training Sessions:</h3>
+
+        <div id="workoutContainer">
+            @if (ViewBag.TrainingSessions != null && ((List<BeFit.Models.TrainingSession>)ViewBag.TrainingSessions).Any())
+            {
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Exercise Name</th>
+                            <th scope="col">Start Time</th>
+                            <th scope="col">End Time</th>
+                            <th scope="col">Series</th>
+                            <th scope="col">Count</th>
+                            <th scope="col">Weight (kg)</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var session in (List<BeFit.Models.TrainingSession>)ViewBag.TrainingSessions)
+                        {
+                            @foreach (var workout in session.Workouts)
+                            {
+                                <tr>
+                                    <td>@session.Exercise.Name</td>
+                                    <td>@session.StartTime.ToString("dd MMM yyyy HH:mm")</td>
+                                    <td>@(session.EndTime?.ToString("dd MMM yyyy HH:mm") ?? "Ongoing")</td>
+                                    <td>@workout.Series</td>
+                                    <td>@workout.Count</td>
+                                    <td>@workout.Weight</td>
+                                    <td>
+   
+                                        <div class="d-flex flex-column">
+
+                                            <a asp-controller="TrainingSession" asp-action="Edit" asp-route-id="@session.Id" class="btn btn-warning btn-sm mb-2">Edit</a>
+                                           
+                                            <a asp-controller="TrainingSession" asp-action="Delete" asp-route-id="@session.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this session?');">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>You have no training sessions.</p>
+            }
+        </div>
     }
     else
     {
