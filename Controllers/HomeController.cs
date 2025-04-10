@@ -28,23 +28,20 @@ namespace BeFit.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                // Get the logged-in user
                 var loggedUser = await _userManager.GetUserAsync(User);
 
                 if (loggedUser != null)
                 {
-                    // Fetch the user's training sessions
                     var sessions = await _applicationDbContext.TrainingSessions
                         .Include(trainingSession => trainingSession.Exercise)
                         .Include(trainingSession => trainingSession.Workouts)
                         .Where(trainingSession => trainingSession.CreatedById == loggedUser.Id)
                         .ToListAsync();
 
-                    // Pass the sessions to the view
                     ViewBag.TrainingSessions = sessions;
                 }
 
-                ViewBag.Username = User.Identity.Name; // Username to be displayed
+                ViewBag.Username = User.Identity.Name;
             }
 
             return View();

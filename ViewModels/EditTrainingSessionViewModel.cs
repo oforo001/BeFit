@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using BeFit.Models;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BeFit.ViewModels
 {
@@ -22,9 +19,7 @@ namespace BeFit.ViewModels
         [Display(Name = "End Time")]
         public DateTime? EndTime { get; set; }
 
-        public List<WorkoutInformation> Workouts { get; set; } = new List<WorkoutInformation>();
-
-        
+        // Fields for a single workout
         [Required(ErrorMessage = "Please enter the number of series.")]
         [Range(0, 20, ErrorMessage = "Add right value")]
         public int? Series { get; set; }
