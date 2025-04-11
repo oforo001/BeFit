@@ -3,6 +3,9 @@
 }
 
 <div class="container my-5">
+    <div class="mb-3 d-flex justify-content-end">
+        <a asp-controller="TrainingSession" asp-action="Create" class="btn btn-primary">Add Workout</a>
+    </div>
     @if (User.Identity.IsAuthenticated)
     {
         <p class="greeting-text fs-4">Hello, @ViewBag.Username!</p>
@@ -41,8 +44,11 @@
                                         <div class="d-flex flex-column">
 
                                             <a asp-controller="TrainingSession" asp-action="Edit" asp-route-id="@session.Id" class="btn btn-warning btn-sm mb-2">Edit</a>
-                                           
-                                            <a asp-controller="TrainingSession" asp-action="Delete" asp-route-id="@session.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this session?');">Delete</a>
+
+                                            <form asp-controller="TrainingSession" asp-action="Delete" asp-route-id="@session.Id" method="post" onsubmit="return confirm('Are you sure you want to delete this session?');">
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>

@@ -9,28 +9,25 @@
 <form asp-action="Edit" method="post">
     @Html.AntiForgeryToken()
 
-    <!-- Exercise Name -->
     <div class="form-group">
         <label asp-for="ExerciseName" class="control-label"></label>
         <input asp-for="ExerciseName" class="form-control" />
         <span asp-validation-for="ExerciseName" class="text-danger"></span>
     </div>
 
-    <!-- Start Time -->
     <div class="form-group">
         <label asp-for="StartTime" class="control-label"></label>
         <input asp-for="StartTime" class="form-control" type="datetime-local" />
         <span asp-validation-for="StartTime" class="text-danger"></span>
     </div>
 
-    <!-- End Time -->
     <div class="form-group">
         <label asp-for="EndTime" class="control-label"></label>
         <input asp-for="EndTime" class="form-control" type="datetime-local" />
         <span asp-validation-for="EndTime" class="text-danger"></span>
     </div>
 
-    <!-- Workout Details -->
+
     <h4>Workout</h4>
 
     <div class="form-group">
@@ -51,7 +48,6 @@
         <span asp-validation-for="Weight" class="text-danger"></span>
     </div>
 
-    <!-- Save and Cancel buttons -->
     <div class="d-flex flex-column align-items-center mt-4">
         <button type="submit" class="btn btn-primary mb-3" style="width: 200px;">Save Changes</button>
         <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="width: 200px;">Cancel</a>

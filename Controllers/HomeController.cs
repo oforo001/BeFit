@@ -15,7 +15,6 @@ namespace BeFit.Controllers
         private readonly ApplicationContext _applicationDbContext;
         private readonly UserManager<AppUser> _userManager;
 
-        // Inject ApplicationContext and UserManager
         public HomeController(ILogger<HomeController> logger, ApplicationContext applicationDbContext, UserManager<AppUser> userManager)
         {
             _logger = logger;
@@ -23,7 +22,6 @@ namespace BeFit.Controllers
             _userManager = userManager;
         }
 
-        // Index Action: Display Training Sessions for logged-in user
         public async Task<IActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
